@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Letter to Friends</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: radial-gradient(circle at center, #000428, #004e92);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+    }
+
+    /* Enter screen styles */
+    #enterScreen {
+      text-align: center;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    .enter-text {
+      font-size: 28px;
+      font-weight: bold;
+      color: #f39c12;
+      text-shadow: 0 0 15px #f39c12;
+      cursor: pointer;
+      animation: pulse 1.5s infinite alternate;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse {
+      0% {
+        text-shadow: 0 0 10px #ff5733;
+      }
+      100% {
+        text-shadow: 0 0 25px #ffc107;
+      }
+    }
+
+    /* Letter container styles */
+    #letterContainer {
+      display: none;
+      width: 60%;
+      max-width: 500px;
+      background: #fff5e1;
+      color: #333;
+      padding: 20px;
+      border-radius: 15px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      animation: slideDown 1s ease-in-out;
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-30px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    /* Typewriter animation */
+    #letterText {
+      display: inline-block;
+      white-space: pre-wrap;
+      font-size: 18px;
+      font-family: 'Courier New', monospace;
+      overflow: hidden;
+      border-right: 3px solid #f39c12;
+      animation: typing 4s steps(50, end), blink 0.7s step-end infinite;
+    }
+
+    @keyframes typing {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        border-color: transparent;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Enter Screen -->
+  <div id="enterScreen">
+    <p class="enter-text" onclick="revealLetter()">ENTERR ME</p>
+  </div>
+
+  <!-- Letter Container -->
+  <div id="letterContainer">
+    <h2>Hi Tehh!!</h2>
+    <p id="letterText"></p>
+  </div>
+
+  <script>
+    // Letter content
+    const letterContent = `
+I really miss the good times we had in junior high—our laughs, our secrets, and even our crazy group projects. You all made those years so special for me.
+
+I just want to say good luck with your studies and everything you're doing right now. Keep working hard and chasing your dreams. I know you can do it!
+
+Let’s catch up soon, okay? I miss you all so much, and take care always.
+
+Imissyou ulittt!
+    `;
+
+    // Show letter on "Enter" key or click
+    function revealLetter() {
+      document.getElementById('enterScreen').style.display = 'none';
+      const letterContainer = document.getElementById('letterContainer');
+      letterContainer.style.display = 'block';
+      typeWriterEffect();
+    }
+
+    // Add event listener for "Enter" key
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Enter') {
+        revealLetter();
+      }
+    });
+
+    // Typewriter animation for the letter
+    function typeWriterEffect() {
+      const letterText = document.getElementById('letterText');
+      let i = 0;
+
+      function type() {
+        if (i < letterContent.length) {
+          letterText.innerHTML += letterContent.charAt(i);
+          i++;
+          setTimeout(type, 50); // Adjust typing speed here
+        }
+      }
+      type();
+    }
+  </script>
+
+</body>
+</html>
